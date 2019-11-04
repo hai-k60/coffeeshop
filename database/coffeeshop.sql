@@ -29,7 +29,7 @@ CREATE TABLE `chitietdonhang` (
   `id_douong` int(11) DEFAULT NULL,
   `soluong` int(11) DEFAULT NULL,
   `dongia` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -54,7 +54,7 @@ CREATE TABLE `chitietdonnhap` (
   `soluong` int(11) DEFAULT NULL,
   `dongia` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_donnhapnguyenlieu`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,10 +79,10 @@ CREATE TABLE `donhang` (
   `id_nhanvien` int(11) DEFAULT NULL,
   `thoigian` datetime DEFAULT NULL,
   `uudai` int(11) DEFAULT NULL,
-  `soban` varchar(3) DEFAULT NULL,
+  `soban` varchar(3) CHARACTER SET utf8 DEFAULT NULL,
   `tongtien` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_donhang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,10 +105,10 @@ CREATE TABLE `donnhapnguyenlieu` (
   `id_donnhapnguyenlieu` int(11) NOT NULL AUTO_INCREMENT,
   `id_nhanvien` int(11) DEFAULT NULL,
   `thoigian` datetime DEFAULT NULL,
-  `nhaphanphoi` varchar(100) DEFAULT NULL,
+  `nhaphanphoi` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `tongtien` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_donnhapnguyenlieu`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,13 +128,13 @@ DROP TABLE IF EXISTS `douong`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `douong` (
-  `id_douong` int(11) NOT NULL,
-  `tendouong` varchar(45) DEFAULT NULL,
-  `loaidouong` varchar(45) DEFAULT NULL,
+  `id_douong` int(11) NOT NULL AUTO_INCREMENT,
+  `tendouong` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `loaidouong` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
   `gia` int(11) DEFAULT NULL,
-  `donvi` varchar(45) DEFAULT NULL,
+  `donvi` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id_douong`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,6 +143,7 @@ CREATE TABLE `douong` (
 
 LOCK TABLES `douong` WRITE;
 /*!40000 ALTER TABLE `douong` DISABLE KEYS */;
+INSERT INTO `douong` VALUES (1,'Cà phê đen','Cà phê',22000,'Cốc');
 /*!40000 ALTER TABLE `douong` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,11 +156,11 @@ DROP TABLE IF EXISTS `khachhang`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `khachhang` (
   `id_khachhang` int(11) NOT NULL AUTO_INCREMENT,
-  `hoten` varchar(45) DEFAULT NULL,
-  `sodienthoai` varchar(10) DEFAULT NULL,
+  `hoten` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `sodienthoai` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
   `diemtichluy` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_khachhang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,11 +181,11 @@ DROP TABLE IF EXISTS `nguyenlieu`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nguyenlieu` (
   `id_nguyenlieu` int(11) NOT NULL AUTO_INCREMENT,
-  `tennguyenlieu` varchar(45) DEFAULT NULL,
+  `tennguyenlieu` varchar(45) CHARACTER SET utf8mb4 DEFAULT NULL,
   `luong` int(11) DEFAULT NULL,
-  `donvi` varchar(45) DEFAULT NULL,
+  `donvi` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id_nguyenlieu`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -193,6 +194,7 @@ CREATE TABLE `nguyenlieu` (
 
 LOCK TABLES `nguyenlieu` WRITE;
 /*!40000 ALTER TABLE `nguyenlieu` DISABLE KEYS */;
+INSERT INTO `nguyenlieu` VALUES (1,'Bột cà phê',1000,'g'),(2,'duong trang',1000,'g');
 /*!40000 ALTER TABLE `nguyenlieu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,14 +207,14 @@ DROP TABLE IF EXISTS `nhanvien`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nhanvien` (
   `id_nhanvien` int(11) NOT NULL AUTO_INCREMENT,
-  `hoten` varchar(45) DEFAULT NULL,
-  `diachi` varchar(100) DEFAULT NULL,
-  `chucvu` varchar(45) DEFAULT NULL,
-  `username` varchar(20) DEFAULT NULL,
-  `password` varchar(20) DEFAULT NULL,
-  `sodienthoai` varchar(10) DEFAULT NULL,
+  `hoten` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `diachi` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `chucvu` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `username` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
+  `password` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
+  `sodienthoai` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id_nhanvien`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -242,4 +244,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-04 22:24:50
+-- Dump completed on 2019-11-04 23:39:56
