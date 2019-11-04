@@ -18,6 +18,21 @@ USE `coffeeshop`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `chitietdonhang`
+--
+
+DROP TABLE IF EXISTS `chitietdonhang`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `chitietdonhang` (
+  `id_donhang` int(11) DEFAULT NULL,
+  `id_douong` int(11) DEFAULT NULL,
+  `soluong` int(11) DEFAULT NULL,
+  `dongia` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `chitietdonhang`
 --
 
@@ -25,6 +40,22 @@ LOCK TABLES `chitietdonhang` WRITE;
 /*!40000 ALTER TABLE `chitietdonhang` DISABLE KEYS */;
 /*!40000 ALTER TABLE `chitietdonhang` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `chitietdonnhap`
+--
+
+DROP TABLE IF EXISTS `chitietdonnhap`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `chitietdonnhap` (
+  `id_donnhapnguyenlieu` int(11) NOT NULL,
+  `id_nguyenlieu` int(11) DEFAULT NULL,
+  `soluong` int(11) DEFAULT NULL,
+  `dongia` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_donnhapnguyenlieu`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `chitietdonnhap`
@@ -36,6 +67,25 @@ LOCK TABLES `chitietdonnhap` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `donhang`
+--
+
+DROP TABLE IF EXISTS `donhang`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `donhang` (
+  `id_donhang` int(11) NOT NULL AUTO_INCREMENT,
+  `id_khachhang` int(11) DEFAULT NULL,
+  `id_nhanvien` int(11) DEFAULT NULL,
+  `thoigian` datetime DEFAULT NULL,
+  `uudai` int(11) DEFAULT NULL,
+  `soban` varchar(3) DEFAULT NULL,
+  `tongtien` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_donhang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `donhang`
 --
 
@@ -43,6 +93,23 @@ LOCK TABLES `donhang` WRITE;
 /*!40000 ALTER TABLE `donhang` DISABLE KEYS */;
 /*!40000 ALTER TABLE `donhang` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `donnhapnguyenlieu`
+--
+
+DROP TABLE IF EXISTS `donnhapnguyenlieu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `donnhapnguyenlieu` (
+  `id_donnhapnguyenlieu` int(11) NOT NULL AUTO_INCREMENT,
+  `id_nhanvien` int(11) DEFAULT NULL,
+  `thoigian` datetime DEFAULT NULL,
+  `nhaphanphoi` varchar(100) DEFAULT NULL,
+  `tongtien` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_donnhapnguyenlieu`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `donnhapnguyenlieu`
@@ -54,6 +121,23 @@ LOCK TABLES `donnhapnguyenlieu` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `douong`
+--
+
+DROP TABLE IF EXISTS `douong`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `douong` (
+  `id_douong` int(11) NOT NULL,
+  `tendouong` varchar(45) DEFAULT NULL,
+  `loaidouong` varchar(45) DEFAULT NULL,
+  `gia` int(11) DEFAULT NULL,
+  `donvi` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_douong`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `douong`
 --
 
@@ -61,6 +145,22 @@ LOCK TABLES `douong` WRITE;
 /*!40000 ALTER TABLE `douong` DISABLE KEYS */;
 /*!40000 ALTER TABLE `douong` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `khachhang`
+--
+
+DROP TABLE IF EXISTS `khachhang`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `khachhang` (
+  `id_khachhang` int(11) NOT NULL AUTO_INCREMENT,
+  `hoten` varchar(45) DEFAULT NULL,
+  `sodienthoai` varchar(10) DEFAULT NULL,
+  `diemtichluy` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_khachhang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `khachhang`
@@ -72,6 +172,22 @@ LOCK TABLES `khachhang` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `nguyenlieu`
+--
+
+DROP TABLE IF EXISTS `nguyenlieu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `nguyenlieu` (
+  `id_nguyenlieu` int(11) NOT NULL AUTO_INCREMENT,
+  `tennguyenlieu` varchar(45) DEFAULT NULL,
+  `luong` int(11) DEFAULT NULL,
+  `donvi` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_nguyenlieu`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `nguyenlieu`
 --
 
@@ -79,6 +195,25 @@ LOCK TABLES `nguyenlieu` WRITE;
 /*!40000 ALTER TABLE `nguyenlieu` DISABLE KEYS */;
 /*!40000 ALTER TABLE `nguyenlieu` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `nhanvien`
+--
+
+DROP TABLE IF EXISTS `nhanvien`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `nhanvien` (
+  `id_nhanvien` int(11) NOT NULL AUTO_INCREMENT,
+  `hoten` varchar(45) DEFAULT NULL,
+  `diachi` varchar(100) DEFAULT NULL,
+  `chucvu` varchar(45) DEFAULT NULL,
+  `username` varchar(20) DEFAULT NULL,
+  `password` varchar(20) DEFAULT NULL,
+  `sodienthoai` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id_nhanvien`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `nhanvien`
@@ -107,4 +242,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-04 22:10:37
+-- Dump completed on 2019-11-04 22:24:50
