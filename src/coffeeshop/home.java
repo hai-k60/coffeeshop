@@ -5,7 +5,7 @@
  */
 package coffeeshop;
 
-import coffee.data.Util;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,12 +18,11 @@ public class home extends javax.swing.JFrame {
     /**
      * Creates new form home
      */
-    String[] headers = {"id_nhanvien","Họ tên","diachi","chucvu","username","password","sodienthoai"};
-    DefaultTableModel myModel;
+    
     
     public home() {
         initComponents();
-        myModel = new DefaultTableModel(headers,0);
+        
     }
 
     /**
@@ -297,7 +296,7 @@ public class home extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        System.out.println("Hello");
+        System.out.println("run home");
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

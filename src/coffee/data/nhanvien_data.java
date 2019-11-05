@@ -5,7 +5,7 @@
  */
 package coffee.data;
 
-import static coffee.data.Util.openConnection;
+import static coffee.data.connectdata.openConnection;
 import coffee.model.nhanvien;
 import com.mysql.jdbc.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class nhanvien_data {
     //Get data from nhanvien
-    public static void GetDataNhanvien(DefaultTableModel myModel)
+    public void GetDataNhanvien(DefaultTableModel myModel)
     {
         Connection connection = openConnection();//Mo ket noi
         String sql="SELECT * FROM nhanvien"; //Chuoi truy van CSDL
