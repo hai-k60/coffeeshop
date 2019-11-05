@@ -8,10 +8,12 @@ package coffee.data;
 import static coffee.data.connectdata.openConnection;
 import coffee.model.material;
 import coffee.model.nhanvien;
+import coffeeshop.materials_panel;
 import com.mysql.jdbc.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -49,4 +51,21 @@ public class material_data {
             e.printStackTrace();
         }
     }
+     
+     public void addMaterial(String txt_nguyenlieu, String txt_luong, String txt_donvi){
+         String querry = "INSERT INTO nguyenlieu (tennguyenlieu, luong, donvi) VALUES (?,?,?)";
+        
+        Connection connection = openConnection();//Mo ket noi
+
+        try{
+            PreparedStatement ps = connection.prepareStatement(querry);//Chuan bi truy van
+            ps.setString(1, txt_nguyenlieu);
+            ps.setString(2, txt_luong);
+            ps.setString(3, (String) txt_donvi);
+            ps.execute();//Thuc thi truy van
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+     }
 }

@@ -201,15 +201,39 @@ public class materials_panel extends javax.swing.JPanel {
 
     private void add_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_btActionPerformed
         // TODO add your handling code here:
-        String querry = "INSERT INTO nguyenlieu (tennguyenlieu, luong, donvi) VALUES (?,?,?)";
+//        String querry = "INSERT INTO nguyenlieu (tennguyenlieu, luong, donvi) VALUES (?,?,?)";
+//        
+//        Connection connection = openConnection();//Mo ket noi
+//
+//        try{
+//            PreparedStatement ps = connection.prepareStatement(querry);//Chuan bi truy van
+//            ps.setString(1, txt_nguyenlieu.getText());
+//            ps.setString(2, txt_luong.getText());
+//            ps.setString(3, (String) txt_donvi.getSelectedItem());
+//            ps.execute();//Thuc thi truy van
+//            
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        material_data mat_data = new material_data();
+        mat_data.addMaterial(txt_nguyenlieu.getText(), txt_luong.getText(), (String) txt_donvi.getSelectedItem());
+        table_nguyenlieu.removeAll();
+        myModel.setRowCount(0);
+        mat_data.GetMaterialData(myModel);
+        table_nguyenlieu.setModel(myModel);
+        //connection.close();
+    }//GEN-LAST:event_add_btActionPerformed
+
+    private void del_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_del_btActionPerformed
+        // TODO add your handling code here:
+        String querry = "DELETE FROM nguyenlieu WHERE id_nguyenlieu= (?)";
         
         Connection connection = openConnection();//Mo ket noi
 
         try{
             PreparedStatement ps = connection.prepareStatement(querry);//Chuan bi truy van
-            ps.setString(1, txt_nguyenlieu.getText());
-            ps.setString(2, txt_luong.getText());
-            ps.setString(3, (String) txt_donvi.getSelectedItem());
+            int row = table_nguyenlieu.getSelectedRow();
+            ps.setString(1,  (String) table_nguyenlieu.getModel().getValueAt(row, 0));
             ps.execute();//Thuc thi truy van
             
         } catch (Exception e) {
@@ -220,11 +244,6 @@ public class materials_panel extends javax.swing.JPanel {
         myModel.setRowCount(0);
         mat_data.GetMaterialData(myModel);
         table_nguyenlieu.setModel(myModel);
-        //connection.close();
-    }//GEN-LAST:event_add_btActionPerformed
-
-    private void del_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_del_btActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_del_btActionPerformed
 
 
