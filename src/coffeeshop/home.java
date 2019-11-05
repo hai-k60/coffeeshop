@@ -42,7 +42,7 @@ public class home extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         menubar_panel = new javax.swing.JPanel();
         btn_customers = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        btn_home = new javax.swing.JLabel();
         btn_order = new javax.swing.JLabel();
         btn_menu = new javax.swing.JLabel();
         btn_employee = new javax.swing.JLabel();
@@ -61,7 +61,7 @@ public class home extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coffee/image/leaf.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/leaf.png"))); // NOI18N
         jLabel1.setText("KSTN");
         header_panel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 0, 70, 43));
 
@@ -105,7 +105,7 @@ public class home extends javax.swing.JFrame {
         btn_customers.setBackground(new java.awt.Color(180, 180, 180));
         btn_customers.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_customers.setForeground(new java.awt.Color(51, 51, 51));
-        btn_customers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coffee/image/customer.png"))); // NOI18N
+        btn_customers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/customer.png"))); // NOI18N
         btn_customers.setText(" Customers");
         btn_customers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_customers.setOpaque(true);
@@ -116,19 +116,19 @@ public class home extends javax.swing.JFrame {
         });
         menubar_panel.add(btn_customers, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 190, 200, 40));
 
-        jLabel5.setBackground(new java.awt.Color(180, 180, 180));
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coffee/image/ihome.png"))); // NOI18N
-        jLabel5.setText(" Home");
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel5.setOpaque(true);
-        menubar_panel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 10, 200, 40));
+        btn_home.setBackground(new java.awt.Color(180, 180, 180));
+        btn_home.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_home.setForeground(new java.awt.Color(51, 51, 51));
+        btn_home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ihome.png"))); // NOI18N
+        btn_home.setText(" Home");
+        btn_home.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_home.setOpaque(true);
+        menubar_panel.add(btn_home, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 10, 200, 40));
 
         btn_order.setBackground(new java.awt.Color(180, 180, 180));
         btn_order.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_order.setForeground(new java.awt.Color(51, 51, 51));
-        btn_order.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coffee/image/order.png"))); // NOI18N
+        btn_order.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/order.png"))); // NOI18N
         btn_order.setText(" Order");
         btn_order.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_order.setOpaque(true);
@@ -142,7 +142,7 @@ public class home extends javax.swing.JFrame {
         btn_menu.setBackground(new java.awt.Color(180, 180, 180));
         btn_menu.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_menu.setForeground(new java.awt.Color(51, 51, 51));
-        btn_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coffee/image/menu.png"))); // NOI18N
+        btn_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/menu.png"))); // NOI18N
         btn_menu.setText(" Menu");
         btn_menu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_menu.setOpaque(true);
@@ -156,7 +156,7 @@ public class home extends javax.swing.JFrame {
         btn_employee.setBackground(new java.awt.Color(180, 180, 180));
         btn_employee.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_employee.setForeground(new java.awt.Color(51, 51, 51));
-        btn_employee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coffee/image/employee.png"))); // NOI18N
+        btn_employee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/employee.png"))); // NOI18N
         btn_employee.setText(" Employees");
         btn_employee.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_employee.setOpaque(true);
@@ -170,7 +170,7 @@ public class home extends javax.swing.JFrame {
         btn_materials.setBackground(new java.awt.Color(180, 180, 180));
         btn_materials.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_materials.setForeground(new java.awt.Color(51, 51, 51));
-        btn_materials.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coffee/image/material.png"))); // NOI18N
+        btn_materials.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/material.png"))); // NOI18N
         btn_materials.setText(" Materials");
         btn_materials.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_materials.setOpaque(true);
@@ -184,7 +184,7 @@ public class home extends javax.swing.JFrame {
         btn_reports.setBackground(new java.awt.Color(180, 180, 180));
         btn_reports.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_reports.setForeground(new java.awt.Color(51, 51, 51));
-        btn_reports.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coffee/image/report.png"))); // NOI18N
+        btn_reports.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/report.png"))); // NOI18N
         btn_reports.setText(" Reports");
         btn_reports.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_reports.setOpaque(true);
@@ -198,7 +198,7 @@ public class home extends javax.swing.JFrame {
         btn_storage.setBackground(new java.awt.Color(180, 180, 180));
         btn_storage.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_storage.setForeground(new java.awt.Color(51, 51, 51));
-        btn_storage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coffee/image/storage.png"))); // NOI18N
+        btn_storage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/storage.png"))); // NOI18N
         btn_storage.setText(" Storage");
         btn_storage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_storage.setOpaque(true);
@@ -317,6 +317,7 @@ public class home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btn_customers;
     private javax.swing.JLabel btn_employee;
+    private javax.swing.JLabel btn_home;
     private javax.swing.JLabel btn_materials;
     private javax.swing.JLabel btn_menu;
     private javax.swing.JLabel btn_order;
@@ -328,7 +329,6 @@ public class home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel menubar_panel;
     // End of variables declaration//GEN-END:variables
 }

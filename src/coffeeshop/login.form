@@ -94,7 +94,7 @@
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/coffee/image/home.png"/>
+          <Image iconType="3" name="/image/home.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel4"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
