@@ -63,7 +63,7 @@ public class login extends javax.swing.JFrame {
         getContentPane().add(txt_password);
         txt_password.setBounds(538, 452, 270, 30);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("E:\\JAVA\\coffeeshop\\home.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coffee/image/home.png"))); // NOI18N
         jLabel4.setText("jLabel4");
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(jLabel4);
