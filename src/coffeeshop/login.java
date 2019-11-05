@@ -5,6 +5,9 @@
  */
 package coffeeshop;
 
+import coffee.data.login_data;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MyPC
@@ -74,15 +77,20 @@ public class login extends javax.swing.JFrame {
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         // TODO add your handling code here:
+        login_data lg_data=new login_data();
         String username= txt_username.getText();
         String password= txt_password.getText();
-        if(username.equals("admin")&&password.equals("admin")){
+        
+        int check = lg_data.getLogin(username,password);//Khai bao bien check, check=1 dang nhap thanh cong
+        System.out.println(check);
+        if(check==1){
             home home_form = new home();
             home_form.setVisible(true);
             this.setVisible(false);
         }
         else{
-            System.out.println("SAi mat khau");
+            System.out.println("Sai mat khau");
+            JOptionPane.showMessageDialog(rootPane, "Username hoặc Password không chính xác");
         }
     }//GEN-LAST:event_btn_loginActionPerformed
 

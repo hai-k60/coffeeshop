@@ -7,15 +7,33 @@ package coffee.data;
 
 import static coffee.data.connectdata.openConnection;
 import com.mysql.jdbc.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 /**
  *
  * @author MyPC
  */
 public class login_data {
     //Xac thuc username password
-    public void getLogin(){
-        Connection connection = openConnection();
-        String sql = "SELECT COUNT(*) FROM coffeeshop.nhanvien WHERE username=\"admin\" and password=\"admin\"";
-        
+    public int getLogin(String user, String pass){
+        int count = 0;
+        Connection connection = openConnection();//mo ket noi
+        //chuoi ket noi
+        String sql = "SELECT COUNT(*) FROM coffeeshop.nhanvien WHERE username=\""+user+"\" and password=\""+pass+"\"";
+        try{
+            PreparedStatement ps = connection.prepareStatement(sql);//chuan bi truy van
+            ResultSet rs = ps.executeQuery();//Thuc thi truy van
+            rs.next();
+            count=rs.getInt("COUNT(*)");
+            //login_model acc = new login_model();
+            //return(count);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    private void print(ResultSet rs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
