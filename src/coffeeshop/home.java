@@ -40,7 +40,6 @@ public class home extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         container_panel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         menubar_panel = new javax.swing.JPanel();
         btn_customers = new javax.swing.JLabel();
         btn_home = new javax.swing.JLabel();
@@ -97,9 +96,6 @@ public class home extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Welcome to Coffee Shop");
         container_panel.add(jLabel3, new java.awt.GridBagConstraints());
-
-        jButton1.setText("jButton1");
-        container_panel.add(jButton1, new java.awt.GridBagConstraints());
 
         getContentPane().add(container_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 43, 585, 465));
 
@@ -329,7 +325,6 @@ public class home extends javax.swing.JFrame {
     private javax.swing.JLabel btn_storage;
     private javax.swing.JPanel container_panel;
     private javax.swing.JPanel header_panel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

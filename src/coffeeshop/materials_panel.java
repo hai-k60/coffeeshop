@@ -5,6 +5,16 @@
  */
 package coffeeshop;
 
+import static coffee.data.connectdata.openConnection;
+import coffee.data.material_data;
+import coffee.data.nhanvien_data;
+import coffee.model.material;
+import com.mysql.jdbc.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author MyPC
@@ -14,8 +24,13 @@ public class materials_panel extends javax.swing.JPanel {
     /**
      * Creates new form materials_panel
      */
+    String[] headers = {"id_nguyenlieu","Ten","Luong","don vi"};
+    DefaultTableModel myModel;
+
+
     public materials_panel() {
         initComponents();
+        myModel = new DefaultTableModel(headers,0);
     }
 
     /**
@@ -32,7 +47,7 @@ public class materials_panel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        table_nguyenlieu = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -40,6 +55,9 @@ public class materials_panel extends javax.swing.JPanel {
         txt_luong = new javax.swing.JTextField();
         txt_donvi = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
+        add_bt = new javax.swing.JButton();
+        mod_bt = new javax.swing.JButton();
+        del_bt = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -64,7 +82,7 @@ public class materials_panel extends javax.swing.JPanel {
         jLabel2.setBackground(new java.awt.Color(102, 102, 102));
         jLabel2.setOpaque(true);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        table_nguyenlieu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -75,13 +93,13 @@ public class materials_panel extends javax.swing.JPanel {
                 "ID", "Tên nguyên liệu", "Lượng", "Đơn vị"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setResizable(false);
-            jTable2.getColumnModel().getColumn(0).setPreferredWidth(10);
-            jTable2.getColumnModel().getColumn(1).setResizable(false);
-            jTable2.getColumnModel().getColumn(2).setResizable(false);
-            jTable2.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane2.setViewportView(table_nguyenlieu);
+        if (table_nguyenlieu.getColumnModel().getColumnCount() > 0) {
+            table_nguyenlieu.getColumnModel().getColumn(0).setResizable(false);
+            table_nguyenlieu.getColumnModel().getColumn(0).setPreferredWidth(10);
+            table_nguyenlieu.getColumnModel().getColumn(1).setResizable(false);
+            table_nguyenlieu.getColumnModel().getColumn(2).setResizable(false);
+            table_nguyenlieu.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jLabel5.setText("Tên nguyên liệu");
@@ -103,6 +121,22 @@ public class materials_panel extends javax.swing.JPanel {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("DANH SÁCH NGUYÊN LIỆU");
 
+        add_bt.setText("Thêm");
+        add_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_btActionPerformed(evt);
+            }
+        });
+
+        mod_bt.setText("Sửa");
+
+        del_bt.setText("Xoá");
+        del_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                del_btActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,7 +156,12 @@ public class materials_panel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txt_nguyenlieu)
                             .addComponent(txt_luong)
-                            .addComponent(txt_donvi, 0, 152, Short.MAX_VALUE)))
+                            .addComponent(txt_donvi, 0, 152, Short.MAX_VALUE))
+                        .addGap(77, 77, 77)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(add_bt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(mod_bt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(del_bt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
@@ -133,19 +172,22 @@ public class materials_panel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txt_nguyenlieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_nguyenlieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add_bt))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txt_luong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_luong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mod_bt))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txt_donvi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                    .addComponent(txt_donvi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(del_bt))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -157,8 +199,38 @@ public class materials_panel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nguyenlieuActionPerformed
 
+    private void add_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_btActionPerformed
+        // TODO add your handling code here:
+        String querry = "INSERT INTO nguyenlieu (tennguyenlieu, luong, donvi) VALUES (?,?,?)";
+        
+        Connection connection = openConnection();//Mo ket noi
+
+        try{
+            PreparedStatement ps = connection.prepareStatement(querry);//Chuan bi truy van
+            ps.setString(1, txt_nguyenlieu.getText());
+            ps.setString(2, txt_luong.getText());
+            ps.setString(3, (String) txt_donvi.getSelectedItem());
+            ps.execute();//Thuc thi truy van
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        material_data mat_data = new material_data();
+        table_nguyenlieu.removeAll();
+        myModel.setRowCount(0);
+        mat_data.GetMaterialData(myModel);
+        table_nguyenlieu.setModel(myModel);
+        //connection.close();
+    }//GEN-LAST:event_add_btActionPerformed
+
+    private void del_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_del_btActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_del_btActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton add_bt;
+    private javax.swing.JButton del_bt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
@@ -168,7 +240,8 @@ public class materials_panel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JButton mod_bt;
+    private javax.swing.JTable table_nguyenlieu;
     private javax.swing.JComboBox<String> txt_donvi;
     private javax.swing.JTextField txt_luong;
     private javax.swing.JTextField txt_nguyenlieu;
