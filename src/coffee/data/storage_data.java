@@ -7,21 +7,51 @@ package coffee.data;
 
 import static coffee.data.connectdata.openConnection;
 import coffee.model.material;
-import coffee.model.nhanvien;
-import coffeeshop.materials_panel;
 import com.mysql.jdbc.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author danhnghia
  */
-public class material_data {
-     public void GetMaterialData(DefaultTableModel myModel)
+public class storage_data {
+    public void delMaterial(int id){
+                String querry = "DELETE FROM nguyenlieu WHERE id_nguyenlieu= (?)";
+        
+        Connection connection = openConnection();//Mo ket noi
+
+        try{
+            PreparedStatement ps = connection.prepareStatement(querry);//Chuan bi truy van
+            //int row = table_nguyenlieu.getSelectedRow();
+            ps.setInt(1, id);
+            ps.execute();//Thuc thi truy van
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void modMaterial(int id, String amount){
+        
+        String querry = "UPDATE nguyenlieu SET luong = ? WHERE id_nguyenlieu = ?";
+        
+        Connection connection = openConnection();//Mo ket noi
+        try{
+            PreparedStatement ps = connection.prepareStatement(querry);//Chuan bi truy van
+            //int row = table_nguyenlieu.getSelectedRow();
+            ps.setInt(1, Integer.parseInt(amount));
+            ps.setInt(2, id);
+            ps.executeUpdate();//Thuc thi truy van
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void GetMaterialData(DefaultTableModel myModel)
     {
         Connection connection = openConnection();//Mo ket noi
         String sql="SELECT * FROM nguyenlieu"; //Chuoi truy van CSDL
@@ -52,36 +82,4 @@ public class material_data {
         }
     }
      
-    public void addMaterial(String txt_nguyenlieu, String txt_luong, String txt_donvi){
-         String querry = "INSERT INTO nguyenlieu (tennguyenlieu, luong, donvi) VALUES (?,?,?)";
-        
-        Connection connection = openConnection();//Mo ket noi
-
-        try{
-            PreparedStatement ps = connection.prepareStatement(querry);//Chuan bi truy van
-            ps.setString(1, txt_nguyenlieu);
-            ps.setString(2, txt_luong);
-            ps.setString(3, txt_donvi);
-            ps.execute();//Thuc thi truy van
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-     }
-    
-    public void delMaterial(int id){
-                String querry = "DELETE FROM nguyenlieu WHERE id_nguyenlieu= (?)";
-        
-        Connection connection = openConnection();//Mo ket noi
-
-        try{
-            PreparedStatement ps = connection.prepareStatement(querry);//Chuan bi truy van
-            //int row = table_nguyenlieu.getSelectedRow();
-            ps.setInt(1, id);
-            ps.execute();//Thuc thi truy van
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }
