@@ -214,7 +214,7 @@ CREATE TABLE `nhanvien` (
   `password` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `sodienthoai` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id_nhanvien`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,8 +223,31 @@ CREATE TABLE `nhanvien` (
 
 LOCK TABLES `nhanvien` WRITE;
 /*!40000 ALTER TABLE `nhanvien` DISABLE KEYS */;
-INSERT INTO `nhanvien` VALUES (1,'le HAi','a','a','a','a','0123');
+INSERT INTO `nhanvien` VALUES (1,'le HAi','a','a','a','a','0123'),(2,'Lê Văn Hải','Hà Nội','admin','admin','admin','0123625423');
 /*!40000 ALTER TABLE `nhanvien` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `thanhphandouong`
+--
+
+DROP TABLE IF EXISTS `thanhphandouong`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `thanhphandouong` (
+  `id_douong` int(11) DEFAULT NULL,
+  `id_nguyenlieu` int(11) DEFAULT NULL,
+  `luong` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `thanhphandouong`
+--
+
+LOCK TABLES `thanhphandouong` WRITE;
+/*!40000 ALTER TABLE `thanhphandouong` DISABLE KEYS */;
+/*!40000 ALTER TABLE `thanhphandouong` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -244,4 +267,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-04 23:39:56
+-- Dump completed on 2019-11-06  0:47:57
