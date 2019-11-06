@@ -5,6 +5,8 @@
  */
 package coffeeshop;
 
+import coffee.data.order_data;
+
 /**
  *
  * @author MyPC
@@ -30,15 +32,27 @@ public class order_panel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txt_hoten = new javax.swing.JTextField();
+        txt_diemtichluy = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_sodienthoai = new javax.swing.JTextField();
+        btn_addkhachhang = new javax.swing.JButton();
+        btn_check = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tb_chitietdonhang = new javax.swing.JTable();
+        cb_douong = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        txt_madonhang = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txt_soluong = new javax.swing.JTextField();
+        btn_adddouong = new javax.swing.JButton();
+        btn_adddonhang = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -52,19 +66,19 @@ public class order_panel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(250, 250, 250));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txt_hoten.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txt_hotenActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 129, -1));
+        jPanel1.add(txt_hoten, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 139, -1));
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txt_diemtichluy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txt_diemtichluyActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 129, -1));
+        jPanel1.add(txt_diemtichluy, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 139, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Khách hàng");
@@ -79,33 +93,93 @@ public class order_panel extends javax.swing.JPanel {
         jLabel8.setText("Điểm tích lũy");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txt_sodienthoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txt_sodienthoaiActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 129, -1));
+        jPanel1.add(txt_sodienthoai, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 139, -1));
+
+        btn_addkhachhang.setBackground(new java.awt.Color(51, 0, 204));
+        btn_addkhachhang.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_addkhachhang.setForeground(new java.awt.Color(255, 255, 255));
+        btn_addkhachhang.setText("Add");
+        btn_addkhachhang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_addkhachhangActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_addkhachhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 70, -1));
+
+        btn_check.setBackground(new java.awt.Color(0, 0, 0));
+        btn_check.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_check.setForeground(new java.awt.Color(255, 255, 255));
+        btn_check.setText("Check");
+        btn_check.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_checkActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_check, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 70, -1));
 
         jPanel2.setBackground(new java.awt.Color(250, 250, 250));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Danh sách order");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, -1, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(251, Short.MAX_VALUE))
-        );
+        tb_chitietdonhang.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Tên đồ uống", "Số lượng", "Đơn giá"
+            }
+        ));
+        jScrollPane1.setViewportView(tb_chitietdonhang);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 530, 150));
+
+        cb_douong.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cà phê đen", "Cà phê nâu", "Cà phê cốt dừa", "Trà đào cam sả" }));
+        jPanel2.add(cb_douong, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 139, -1));
+
+        jLabel4.setText("Số lượng");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, 20));
+
+        txt_madonhang.setEnabled(false);
+        jPanel2.add(txt_madonhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 80, -1));
+
+        jLabel10.setText("Mã đơn hàng");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 20));
+
+        jLabel11.setText("Chọn đồ uống");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 20));
+        jPanel2.add(txt_soluong, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 80, -1));
+
+        btn_adddouong.setBackground(new java.awt.Color(255, 0, 0));
+        btn_adddouong.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_adddouong.setForeground(new java.awt.Color(255, 255, 255));
+        btn_adddouong.setText("+");
+        jPanel2.add(btn_adddouong, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 90, 54, -1));
+
+        btn_adddonhang.setBackground(new java.awt.Color(0, 153, 51));
+        btn_adddonhang.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_adddonhang.setForeground(new java.awt.Color(255, 255, 255));
+        btn_adddonhang.setText("Add");
+        btn_adddonhang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_adddonhangActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_adddonhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 30, 54, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -114,10 +188,11 @@ public class order_panel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -130,36 +205,72 @@ public class order_panel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txt_sodienthoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_sodienthoaiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txt_sodienthoaiActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txt_hotenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_hotenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txt_hotenActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txt_diemtichluyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_diemtichluyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txt_diemtichluyActionPerformed
+
+    private void btn_adddonhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adddonhangActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btn_adddonhangActionPerformed
+
+    private void btn_addkhachhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addkhachhangActionPerformed
+        // TODO add your handling code here:
+        order_data ord_data=new order_data();
+        ord_data.addKhachhang(txt_sodienthoai.getText(), txt_hoten.getText());
+    }//GEN-LAST:event_btn_addkhachhangActionPerformed
+
+    private void btn_checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_checkActionPerformed
+        // TODO add your handling code here:
+        order_data ord_data=new order_data();
+        String[] data=new String[3];
+        int check = ord_data.checkKhachhang(txt_sodienthoai.getText());
+        System.out.println(check);
+        if(check==1){
+            data=ord_data.getKhachhang(txt_sodienthoai.getText());
+            txt_hoten.setText(data[0]);
+            txt_diemtichluy.setText(data[2]);
+        }
+    }//GEN-LAST:event_btn_checkActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_adddonhang;
+    private javax.swing.JButton btn_adddouong;
+    private javax.swing.JButton btn_addkhachhang;
+    private javax.swing.JButton btn_check;
+    private javax.swing.JComboBox<String> cb_douong;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tb_chitietdonhang;
+    private javax.swing.JTextField txt_diemtichluy;
+    private javax.swing.JTextField txt_hoten;
+    private javax.swing.JTextField txt_madonhang;
+    private javax.swing.JTextField txt_sodienthoai;
+    private javax.swing.JTextField txt_soluong;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,7 +14,7 @@ import java.sql.ResultSet;
  * @author MyPC
  */
 public class login_data {
-    //Xac thuc username password
+    //Ham xac thuc username password
     public int getLogin(String user, String pass){
         int count = 0;
         Connection connection = openConnection();//mo ket noi
