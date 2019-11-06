@@ -5,18 +5,36 @@
  */
 package coffeeshop;
 
+import coffee.data.douong_data;
+import coffee.data.thanhphandouong_data;
+import coffee.model.douong;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import coffeeshop.bangthanhphan_panel;
+
 /**
  *
  * @author MyPC
  */
 public class menu_panel extends javax.swing.JPanel {
-
+    String[] headers = {"ID Đồ uống", "Tên đồ uống", "Loại", "Giá", "Đơn vị"};
+    DefaultTableModel myModel;
+    private Object container_panel;
+    
     /**
      * Creates new form menu_panel
      */
     public menu_panel() {
         initComponents();
-    }
+        myModel = new DefaultTableModel(headers, 0);
+        jTable1.setModel(myModel);
+        myModel.setRowCount(0);
+        douong_data.LoadDatatoJTable(myModel);    
+        jTable1.setModel(myModel);
+        
+    } 
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,93 +45,353 @@ public class menu_panel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem3 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem4 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem5 = new javax.swing.JCheckBoxMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txt_DoUong = new javax.swing.JTextField();
+        cb_Loai = new javax.swing.JComboBox();
+        txt_Gia = new javax.swing.JTextField();
+        txt_DonVi = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        txt_caphe = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        cb_thanhphan = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
+
+        jCheckBoxMenuItem2.setSelected(true);
+        jCheckBoxMenuItem2.setText("jCheckBoxMenuItem2");
+
+        jCheckBoxMenuItem3.setSelected(true);
+        jCheckBoxMenuItem3.setText("jCheckBoxMenuItem3");
+
+        jCheckBoxMenuItem4.setSelected(true);
+        jCheckBoxMenuItem4.setText("jCheckBoxMenuItem4");
+
+        jCheckBoxMenuItem5.setSelected(true);
+        jCheckBoxMenuItem5.setText("jCheckBoxMenuItem5");
 
         setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 549, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 309, Short.MAX_VALUE)
-        );
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Menu");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 11, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(102, 102, 102));
         jLabel2.setOpaque(true);
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 39, 549, 2));
 
-        jLabel3.setText("jLabel3");
+        jLabel5.setText("Đồ uống");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 74, -1, -1));
 
-        jLabel4.setText("jLabel4");
+        jLabel6.setText("Loại");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 112, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addContainerGap(26, Short.MAX_VALUE))
-        );
+        jLabel7.setText("Giá");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 150, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jLabel8.setText("Đơn vị");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 188, -1, -1));
+        add(txt_DoUong, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 71, 190, -1));
+
+        cb_Loai.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cà Phê", "Trà" }));
+        cb_Loai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_LoaiActionPerformed(evt);
+            }
+        });
+        add(cb_Loai, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 109, 190, -1));
+        add(txt_Gia, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 147, 190, -1));
+        add(txt_DonVi, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 185, 190, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setText("Danh sách đồ uống");
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 247, 353, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Đồ uống", "Loại", "Giá", "Đơn vị"
+            }
+        ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 270, 460, 178));
+
+        jButton1.setText("Thêm");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 216, -1, -1));
+
+        jButton2.setText("Sửa");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
+
+        jButton3.setText("Xóa");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, -1, 120));
+        add(txt_caphe, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 70, -1));
+
+        jLabel3.setText("Thành phần");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, -1, 20));
+
+        cb_thanhphan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cà Phê", "Sữa", "Đường", "Siro", " " }));
+        add(cb_thanhphan, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, -1, -1));
+
+        jLabel4.setText("Nguyên Liệu");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, -1, -1));
+
+        jLabel10.setText("Lượng (g)");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, -1, -1));
+
+        jButton4.setText("Cập nhật thành phần");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, -1, -1));
+
+        jButton5.setText("Xem thành phần");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         try{
+//         douong sp = new douong();
+//         sp.setTendouong(txt_DoUong.getText().trim());
+//         sp.setLoaidouong(cb_Loai.getSelectedItem().toString());
+//         sp.setDonvi(txt_DonVi.getText());//
+//         sp.setGia(Integer.parseInt(txt_Gia.getText().trim()));
+        int kq;
+         kq = douong_data.insertDoUong(txt_DoUong.getText().trim(),cb_Loai.getSelectedItem().toString(),
+                 Integer.parseInt(txt_Gia.getText().trim()),txt_DonVi.getText());
+         if (kq > 0)
+         {
+             JOptionPane.showMessageDialog(this, "Them Thanh Cong");
+         }
+         else
+         {
+             JOptionPane.showMessageDialog(this, "Them That Bai");            
+         }
+         }catch(Exception e)
+         {
+             return ;
+         }
+      
+         
+//        Vector v = new Vector();
+//         v.add(txt_DoUong.getText().trim());
+//         v.add(cb_Loai.getSelectedItem().toString());
+//         v.add(txt_Gia.getText().trim());
+//         v.add(txt_DonVi.getText().trim());
+//         myModel.addRow(v);
+     //    jTable1.setModel(myModel);
+         myModel.setRowCount(0);
+        douong_data.LoadDatatoJTable(myModel);    
+        jTable1.setModel(myModel);
+    
+         
+         
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cb_LoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_LoaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_LoaiActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int row = jTable1.getSelectedRow();
+        int id = (int) jTable1.getValueAt(row, 0) ;
+        String douong = txt_DoUong.getText();
+        String loaidouong = cb_Loai.getSelectedItem().toString(); 
+        int gia = Integer.parseInt(txt_Gia.getText());
+        String donvi = txt_DonVi.getText();
+        
+        if (row <0 )
+        {
+            JOptionPane.showMessageDialog(this, "chua chon dong");
+        }
+        else
+        {
+            int kq = douong_data.updateDoUong(id, douong, loaidouong, gia, donvi);
+        
+            myModel.setValueAt(txt_DoUong.getText().trim(), row, 1);
+            myModel.setValueAt(cb_Loai.getSelectedItem(), row, 2);
+            myModel.setValueAt(txt_Gia.getText().trim(), row, 3);
+            myModel.setValueAt(txt_DonVi.getText().trim(), row, 4);
+            
+            if (kq > 0)
+         {
+             JOptionPane.showMessageDialog(this, "Sua Thanh Cong");
+         }
+         else
+         {
+             JOptionPane.showMessageDialog(this, "Sua That Bai");            
+         }
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int row = jTable1.getSelectedRow();
+
+//        mat_data.delMaterial((int) table_nguyenlieu.getModel().getValueAt(row, 0));
+
+        if (row <0 )
+        {
+            JOptionPane.showMessageDialog(this, "chua chon dong");
+        }
+        else
+        {
+        int kq = douong_data.deleteDouong((int) jTable1.getModel().getValueAt(row, 0));
+        if (kq > 0)
+         {
+             JOptionPane.showMessageDialog(this, "Xoa Thanh Cong");
+         }
+         else
+         {
+             JOptionPane.showMessageDialog(this, "Xoa That Bai");            
+         }
+            myModel.removeRow(row);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        // TODO add your handling code here:
+        myModel.setRowCount(0);
+        douong_data.LoadDatatoJTable(myModel);    
+        jTable1.setModel(myModel);
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int row = jTable1.getSelectedRow();
+        if (row < 0)
+            return;
+        txt_DoUong.setText(jTable1.getValueAt(row, 1).toString());
+        cb_Loai.setSelectedItem(jTable1.getValueAt(row, 2));
+        txt_Gia.setText(jTable1.getValueAt(row, 3).toString());
+        txt_DonVi.setText(jTable1.getValueAt(row, 4).toString());
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        int row = jTable1.getSelectedRow();
+        int id_douong = (int) jTable1.getValueAt(row, 0);
+        int id_nguyenlieu = thanhphandouong_data.getid_nguyenlieu(cb_thanhphan.getSelectedItem().toString());
+        int luong = Integer.parseInt(txt_caphe.getText());
+        if (row <0 )
+        {
+            JOptionPane.showMessageDialog(this, "chua chon dong");
+        }
+        else
+        {
+            int kq = thanhphandouong_data.insertThanhphan(id_douong, id_nguyenlieu, luong);
+            
+            if (kq > 0)
+         {
+             JOptionPane.showMessageDialog(this, "Update Thanh Cong");
+         }
+         else
+         {
+             JOptionPane.showMessageDialog(this, "Update That Bai");            
+         }
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+//        bangthanhphan_panel subpanel = new bangthanhphan_panel();
+//        container_panel.removeAll();
+//        container_panel.add(subpanel);
+//        container_panel.validate();      
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox cb_Loai;
+    private javax.swing.JComboBox cb_thanhphan;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem3;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem4;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JTable jTable1;
+    private javax.swing.JTextField txt_DoUong;
+    private javax.swing.JTextField txt_DonVi;
+    private javax.swing.JTextField txt_Gia;
+    private javax.swing.JTextField txt_caphe;
     // End of variables declaration//GEN-END:variables
 }
