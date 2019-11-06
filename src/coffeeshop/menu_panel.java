@@ -150,7 +150,7 @@ public class menu_panel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 270, 460, 178));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 460, 150));
 
         jButton1.setText("Thêm");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -206,7 +206,7 @@ public class menu_panel extends javax.swing.JPanel {
                 jButton5ActionPerformed(evt);
             }
         });
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, -1, -1));
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
