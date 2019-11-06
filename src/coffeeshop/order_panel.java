@@ -6,6 +6,7 @@
 package coffeeshop;
 
 import coffee.data.order_data;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,8 +17,12 @@ public class order_panel extends javax.swing.JPanel {
     /**
      * Creates new form order_panel
      */
+    String[] headers = {"id_douong","soluong","dongia"};
+    DefaultTableModel myModel;
+    
     public order_panel() {
         initComponents();
+        myModel = new DefaultTableModel(headers,0);
     }
 
     /**
@@ -53,6 +58,8 @@ public class order_panel extends javax.swing.JPanel {
         txt_soluong = new javax.swing.JTextField();
         btn_adddouong = new javax.swing.JButton();
         btn_adddonhang = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        txt_tongtien = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -131,17 +138,17 @@ public class order_panel extends javax.swing.JPanel {
 
         tb_chitietdonhang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Tên đồ uống", "Số lượng", "Đơn giá"
+                "Tên đồ uống", "Số lượng", "Đơn giá"
             }
         ));
         jScrollPane1.setViewportView(tb_chitietdonhang);
@@ -168,18 +175,29 @@ public class order_panel extends javax.swing.JPanel {
         btn_adddouong.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btn_adddouong.setForeground(new java.awt.Color(255, 255, 255));
         btn_adddouong.setText("+");
+        btn_adddouong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_adddouongActionPerformed(evt);
+            }
+        });
         jPanel2.add(btn_adddouong, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 90, 54, -1));
 
         btn_adddonhang.setBackground(new java.awt.Color(0, 153, 51));
         btn_adddonhang.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btn_adddonhang.setForeground(new java.awt.Color(255, 255, 255));
-        btn_adddonhang.setText("Add");
+        btn_adddonhang.setText("New");
         btn_adddonhang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_adddonhangActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_adddonhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 30, 54, -1));
+        jPanel2.add(btn_adddonhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 30, 55, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel9.setText("Tổng tiền");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, -1, 20));
+        jPanel2.add(txt_tongtien, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, 80, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -189,10 +207,9 @@ public class order_panel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -224,7 +241,11 @@ public class order_panel extends javax.swing.JPanel {
 
     private void btn_adddonhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adddonhangActionPerformed
         // TODO add your handling code here:
-        
+        order_data ord_data=new order_data();
+        ord_data.addDonhang("", "", "", "", "");
+        String text=ord_data.getIdDonhang();
+        System.out.println(text);
+        txt_madonhang.setText(text);
     }//GEN-LAST:event_btn_adddonhangActionPerformed
 
     private void btn_addkhachhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addkhachhangActionPerformed
@@ -246,6 +267,20 @@ public class order_panel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btn_checkActionPerformed
 
+    private void btn_adddouongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adddouongActionPerformed
+        // TODO add your handling code here:
+        order_data ord_data = new order_data();
+        String[] datadouong= new String[3];
+        datadouong = ord_data.getDouong(cb_douong.getSelectedItem().toString());
+        //add do uong vao chi tiet don hang
+        ord_data.addDouong(txt_madonhang.getText(), datadouong[0], txt_soluong.getText(), datadouong[2]);
+        //Load chi tiet don hang len bang
+        ord_data.GetChitietdoihang(myModel, txt_madonhang.getText());
+        tb_chitietdonhang.setModel(myModel);
+        int tongtien=ord_data.getTongtien(txt_madonhang.getText());
+        txt_tongtien.setText(Integer.toString(tongtien));
+    }//GEN-LAST:event_btn_adddouongActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_adddonhang;
@@ -263,6 +298,7 @@ public class order_panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -272,5 +308,6 @@ public class order_panel extends javax.swing.JPanel {
     private javax.swing.JTextField txt_madonhang;
     private javax.swing.JTextField txt_sodienthoai;
     private javax.swing.JTextField txt_soluong;
+    private javax.swing.JTextField txt_tongtien;
     // End of variables declaration//GEN-END:variables
 }
