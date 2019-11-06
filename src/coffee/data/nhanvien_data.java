@@ -11,6 +11,7 @@ import com.mysql.jdbc.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * @author MyPC
  */
 public class nhanvien_data {
-    //Get data from nhanvien
+    //HIen thi du lieu nhan vien tu sql len employees_pannel
     public void GetDataNhanvien(DefaultTableModel myModel)
     {
         Connection connection = openConnection();//Mo ket noi
@@ -55,4 +56,58 @@ public class nhanvien_data {
             e.printStackTrace();
         }
     }
+    // Ham Add du lieu len mysql khi bam nut New
+        public void addEmployees(String txtHoten, String txtDiachi, String txtChucvu, String txtUsername, String txtPassword, String txtSodienthoai)
+        {
+        String querry = "INSERT INTO nhanvien (hoten, diachi, chucvu, username, password, sodienthoai) VALUES (?,?,?,?,?,?)";
+        Connection connection = openConnection(); //Mo ket noi
+        try{
+            PreparedStatement ps = connection.prepareStatement(querry); //Chuan bi truy van
+            ps.setString(1, txtHoten);
+            ps.setString(2, txtDiachi);
+            ps.setString(3, txtChucvu);
+            ps.setString(4, txtUsername);
+            ps.setString(5, txtPassword);
+            ps.setString(6, txtSodienthoai);
+            ps.execute();//Thuc thi truy va
+        } catch (Exception e) {
+            e.printStackTrace();
+            }
+        }
+     // Ham Delete du lieu nhan vien mysql khi bam Delete
+        public void delEmployees(int id){
+            String querry = "DELETE FROM nhanvien WHERE id_nhanvien= (?)";
+            Connection connection = openConnection();//Mo ket noi
+        try{
+            PreparedStatement ps = connection.prepareStatement(querry);//Chuan bi truy van
+            //int row = table_nguyenlieu.getSelectedRow();
+            ps.setInt(1, id);
+            ps.execute();//Thuc thi truy van 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+     // Ham Update du lieu nhan vien vao my sql
+        public static int modEmployees(String txtHoten, String txtDiachi, String txtChucvu, String txtUsername,  String txtSodienthoai, int id_nhanvien){
+        int kq = -1;
+        String querry = "UPDATE nhanvien SET hoten = ?, diachi = ?, chucvu = ?, username = ?, sodienthoai =?  WHERE id_nhanvien = ?";
+        Connection connection = openConnection();//Mo ket noi
+        try{
+            PreparedStatement ps = connection.prepareStatement(querry);//Chuan bi truy van
+            //int row = table_nguyenlieu.getSelectedRow();
+    
+            ps.setString(1, txtHoten);
+            ps.setString(2, txtDiachi);
+            ps.setString(3, txtChucvu);
+            ps.setString(4, txtUsername);
+            ps.setString(5, txtSodienthoai);
+            ps.setInt(6, id_nhanvien);
+            kq = ps.executeUpdate();//Thuc thi truy van  
+            return kq;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return kq;
+        }
+    }
+       
 }
