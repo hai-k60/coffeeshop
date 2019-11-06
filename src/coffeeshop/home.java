@@ -8,7 +8,7 @@ package coffeeshop;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
+import coffeeshop.menu_panel;
 /**
  *
  * @author MyPC
@@ -18,11 +18,15 @@ public class home extends javax.swing.JFrame {
     /**
      * Creates new form home
      */
+   
     
-    
+    /**
+     * Creates new form menu_panel
+     */
     public home() {
         initComponents();
-        
+       
+   
     }
 
     /**
@@ -236,6 +240,8 @@ public class home extends javax.swing.JFrame {
         container_panel.removeAll();
         container_panel.add(subpanel);
         container_panel.validate();
+        
+        
 //        main_panel.repaint();
     }//GEN-LAST:event_btn_menuMouseClicked
 
