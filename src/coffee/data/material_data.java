@@ -16,6 +16,9 @@ import java.util.Vector;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import java.util.Date;
+import java.sql.Timestamp;
+
 /**
  *
  * @author danhnghia
@@ -84,4 +87,36 @@ public class material_data {
             e.printStackTrace();
         }
     }
+    
+    public void add(int id, int add_amount, int old_amount, int cost){
+        int amount = add_amount + old_amount;
+        storage_data st_data = new storage_data();
+        if(id>0)
+            st_data.modMaterial(id, Integer.toString(amount));
+  
+        int id_nhanvien = 3;
+        String nhaphanphoi = "Nghia";
+        Date date = new Date();
+        long time = date.getTime();
+        
+        Timestamp ts = new Timestamp(time);
+        int total = cost*amount;
+        
+        String querry = "INSERT INTO donnhapnguyenlieu (id_nhanvien, thoigian, nhaphanphoi, tongtien) VALUES (?,?,?,?)";
+        
+        Connection connection = openConnection();//Mo ket noi
+        try{
+            PreparedStatement ps = connection.prepareStatement(querry);//Chuan bi truy van
+            //int row = table_nguyenlieu.getSelectedRow();
+            ps.setInt(1, id_nhanvien);
+            ps.setString(2, ts.toString());
+            ps.setString(3, nhaphanphoi);
+            ps.setInt(4, total);
+            ps.executeUpdate();//Thuc thi truy van
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 }

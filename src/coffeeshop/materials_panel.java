@@ -8,6 +8,7 @@ package coffeeshop;
 import static coffee.data.connectdata.openConnection;
 import coffee.data.material_data;
 import coffee.data.nhanvien_data;
+import coffee.data.storage_data;
 import coffee.model.material;
 import com.mysql.jdbc.Connection;
 import java.sql.PreparedStatement;
@@ -26,11 +27,19 @@ public class materials_panel extends javax.swing.JPanel {
      */
     String[] headers = {"id_nguyenlieu","Ten","Luong","don vi"};
     DefaultTableModel myModel;
+    storage_data st_data;
+    material_data mat_data;
+    int old_amount;
+    int old_id;
 
 
     public materials_panel() {
         initComponents();
         myModel = new DefaultTableModel(headers,0);
+        st_data = new storage_data();
+        st_data.GetMaterialData(myModel);
+        tb_storage.setModel(myModel);
+        mat_data = new material_data();
     }
 
     /**
@@ -46,18 +55,28 @@ public class materials_panel extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        table_nguyenlieu = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tb_storage = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        txt_cost_add = new javax.swing.JTextField();
+        txt_name_add = new javax.swing.JTextField();
+        txt_amount_add = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txt_nguyenlieu = new javax.swing.JTextField();
-        txt_luong = new javax.swing.JTextField();
-        txt_donvi = new javax.swing.JComboBox<>();
+        cbb_unit_add = new javax.swing.JComboBox<>();
+        bt_new = new javax.swing.JButton();
+        txt_cost_new = new javax.swing.JTextField();
+        cbb_unit_new = new javax.swing.JComboBox<>();
+        txt_amount_new = new javax.swing.JTextField();
+        txt_name_new = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        add_bt = new javax.swing.JButton();
-        mod_bt = new javax.swing.JButton();
-        del_bt = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        bt_add = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -74,15 +93,20 @@ public class materials_panel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(585, 459));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Materials");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 11, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(102, 102, 102));
         jLabel2.setOpaque(true);
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 39, 549, 2));
 
-        table_nguyenlieu.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tb_storage.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -90,156 +114,169 @@ public class materials_panel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Tên nguyên liệu", "Lượng", "Đơn vị"
+                "ID", "Tên nguyên liệu", "Lượng", "Đơn Vị"
             }
         ));
-        jScrollPane2.setViewportView(table_nguyenlieu);
-        if (table_nguyenlieu.getColumnModel().getColumnCount() > 0) {
-            table_nguyenlieu.getColumnModel().getColumn(0).setResizable(false);
-            table_nguyenlieu.getColumnModel().getColumn(0).setPreferredWidth(10);
-            table_nguyenlieu.getColumnModel().getColumn(1).setResizable(false);
-            table_nguyenlieu.getColumnModel().getColumn(2).setResizable(false);
-            table_nguyenlieu.getColumnModel().getColumn(3).setResizable(false);
-        }
-
-        jLabel5.setText("Tên nguyên liệu");
-
-        jLabel6.setText("Lượng");
-
-        jLabel7.setText("Đơn vị");
-
-        txt_nguyenlieu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_nguyenlieuActionPerformed(evt);
+        tb_storage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_storageMouseClicked(evt);
             }
         });
+        jScrollPane3.setViewportView(tb_storage);
 
-        txt_donvi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "gam", "hộp", "chai" }));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 240));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("DANH SÁCH NGUYÊN LIỆU");
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 590, 240));
 
-        add_bt.setText("Thêm");
-        add_bt.addActionListener(new java.awt.event.ActionListener() {
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.add(txt_cost_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 160, -1));
+
+        txt_name_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add_btActionPerformed(evt);
+                txt_name_addActionPerformed(evt);
             }
         });
+        jPanel2.add(txt_name_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 160, -1));
+        jPanel2.add(txt_amount_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 160, -1));
 
-        mod_bt.setText("Sửa");
+        jLabel3.setText("Đơn giá:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 50, 20));
 
-        del_bt.setText("Xoá");
-        del_bt.addActionListener(new java.awt.event.ActionListener() {
+        jLabel5.setText("Tên:");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 30, 20));
+
+        jLabel6.setText("Lượng nhập:");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 80, 20));
+
+        jLabel7.setText("Đơn vị:");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 40, 20));
+
+        cbb_unit_add.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "gam", "hộp", "chai" }));
+        jPanel2.add(cbb_unit_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 160, -1));
+
+        bt_new.setText("Thêm nguyên liệu mới");
+        bt_new.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                del_btActionPerformed(evt);
+                bt_newActionPerformed(evt);
             }
         });
+        jPanel2.add(bt_new, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 160, -1));
+        jPanel2.add(txt_cost_new, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 160, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addComponent(jScrollPane2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_nguyenlieu)
-                            .addComponent(txt_luong)
-                            .addComponent(txt_donvi, 0, 152, Short.MAX_VALUE))
-                        .addGap(77, 77, 77)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(add_bt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(mod_bt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(del_bt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txt_nguyenlieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(add_bt))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txt_luong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mod_bt))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txt_donvi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(del_bt))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        cbb_unit_new.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "gam", "hộp ", "chai" }));
+        jPanel2.add(cbb_unit_new, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 160, -1));
+        jPanel2.add(txt_amount_new, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 160, -1));
+
+        txt_name_new.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_name_newActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txt_name_new, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 160, -1));
+
+        jLabel8.setText("Tên:");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 30, 20));
+
+        jLabel9.setText("Lượng nhập:");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 80, 20));
+
+        jLabel10.setText("Đơn vị:");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 40, 20));
+
+        jLabel4.setText("Đơn giá:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 50, 20));
+
+        bt_add.setText("Thêm");
+        bt_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_addActionPerformed(evt);
+            }
+        });
+        jPanel2.add(bt_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 160, -1));
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 580, 180));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_nguyenlieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nguyenlieuActionPerformed
+    private void txt_name_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_name_addActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_nguyenlieuActionPerformed
+    }//GEN-LAST:event_txt_name_addActionPerformed
 
-    private void add_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_btActionPerformed
+    private void bt_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_newActionPerformed
         // TODO add your handling code here:
-
-        material_data mat_data = new material_data();
-        mat_data.addMaterial(txt_nguyenlieu.getText(), txt_luong.getText(), (String) txt_donvi.getSelectedItem());
-        //table_nguyenlieu.removeAll();
+        String name = txt_name_new.getText();
+        int amount = Integer.parseInt(txt_amount_new.getText());
+        String unit = (String)cbb_unit_new.getSelectedItem();
+        int cost = Integer.parseInt(txt_cost_new.getText());
+        
+        mat_data.addMaterial(name ,Integer.toString(amount), unit);
+        mat_data.add(0, amount, 0, cost);
         myModel.setRowCount(0);
-        mat_data.GetMaterialData(myModel);
-        table_nguyenlieu.setModel(myModel);
-        //connection.close();
-    }//GEN-LAST:event_add_btActionPerformed
+        st_data.GetMaterialData(myModel);
+        tb_storage.setModel(myModel);
+    }//GEN-LAST:event_bt_newActionPerformed
 
-    private void del_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_del_btActionPerformed
+    private void txt_name_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_name_newActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_txt_name_newActionPerformed
 
-        int row = table_nguyenlieu.getSelectedRow();
-        material_data mat_data = new material_data();
-        mat_data.delMaterial((int) table_nguyenlieu.getModel().getValueAt(row, 0));
-        table_nguyenlieu.removeAll();
+    private void bt_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_addActionPerformed
+        // TODO add your handling code here:
+        int add_amount = Integer.parseInt(txt_amount_add.getText());
+        int cost = Integer.parseInt(txt_cost_add.getText());
+        mat_data.add(this.old_id, add_amount, old_amount, cost);
         myModel.setRowCount(0);
-        mat_data.GetMaterialData(myModel);
-        table_nguyenlieu.setModel(myModel);
-    }//GEN-LAST:event_del_btActionPerformed
+        st_data.GetMaterialData(myModel);
+        tb_storage.setModel(myModel);
+        
+        
+    }//GEN-LAST:event_bt_addActionPerformed
+
+    private void tb_storageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_storageMouseClicked
+        // TODO add your handling code here:
+        int row = tb_storage.getSelectedRow();
+        if(row<0) return;
+        else{
+            int id = (int) tb_storage.getModel().getValueAt(row, 0);
+            String name = (String) tb_storage.getModel().getValueAt(row, 1);
+            String amount = (String) tb_storage.getModel().getValueAt(row, 2);
+            String unit = (String) tb_storage.getModel().getValueAt(row, 3);
+            //txt_id.setText(Integer.toString(id));
+            txt_name_add.setText(name);
+            //txt_amount_add.setText(amount);
+            cbb_unit_add.setSelectedItem(unit);
+            this.old_amount = Integer.parseInt(amount);
+            this.old_id = id;
+        }
+
+    }//GEN-LAST:event_tb_storageMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton add_bt;
-    private javax.swing.JButton del_bt;
+    private javax.swing.JButton bt_add;
+    private javax.swing.JButton bt_new;
+    private javax.swing.JComboBox<String> cbb_unit_add;
+    private javax.swing.JComboBox<String> cbb_unit_new;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JButton mod_bt;
-    private javax.swing.JTable table_nguyenlieu;
-    private javax.swing.JComboBox<String> txt_donvi;
-    private javax.swing.JTextField txt_luong;
-    private javax.swing.JTextField txt_nguyenlieu;
+    private javax.swing.JTable tb_storage;
+    private javax.swing.JTextField txt_amount_add;
+    private javax.swing.JTextField txt_amount_new;
+    private javax.swing.JTextField txt_cost_add;
+    private javax.swing.JTextField txt_cost_new;
+    private javax.swing.JTextField txt_name_add;
+    private javax.swing.JTextField txt_name_new;
     // End of variables declaration//GEN-END:variables
 }
